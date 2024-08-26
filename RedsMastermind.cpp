@@ -1,5 +1,5 @@
 // Red here. I'm making my own version of the game Mastermind.
-
+// TO DO comment everywhere lmao
 #include <algorithm>
 #include <iostream>
 #include <random>
@@ -9,16 +9,16 @@
 
 using namespace std;
 
-int decision, hits, blows, turnCount, winCount, loseCount, cheatCheck = 1;
-string answer, userAnswer;
+int decision, hits, blows, turnCount, winCount, lossCount, cheatCheck = 0;
+string answer, userAnswer, ap1, ap2, ap3, ap4, ap5, uap1, uap2, uap3, uap4, uap5;
 
 void menu(){
-  if(loseCount > 0 or winCount >0){cout<<endl;}
+  if(lossCount > 0 || winCount > 0){cout<<endl;}
   if(winCount  > 0){cout<< "Win Count: "<<winCount<<" ";}
-  if(loseCount > 0){cout<<"Lose Count: "<<loseCount;}
+  if(lossCount > 0){cout<<"Loss Count: "<<lossCount;}
   cout<<"\nPlease select an option.\n\t1 - Start Game with 4 Numbers\n\t2 - Start Game with 4 Numbers (Duplicates On)\n\t3 - Start Game with 5 Numbers\n\t4 - Start Game with 5 Numbers (Duplicates On)\n\t5 - How to Play\n\t6 - Exit\n\n\t\t> ";
   cin>>decision;
-  if(decision >= 8 or decision <= 0 or cin.fail()){
+  if(decision >= 8 || decision <= 0 || cin.fail()){
 	cin.clear();
 	cin.ignore(100, '\n');
 	system("CLS");
@@ -50,16 +50,26 @@ void gameA(){
 	  break;
 	}
 	size_t found = userAnswer.find_first_not_of("1234567890");
-	if(userAnswer.length() != 4 or cin.fail() or found != std::string::npos){	
+	if(userAnswer.length() != 4 || cin.fail() || found != std::string::npos){
+	  // TO DO fix crashing if letter
 	  cin.clear();
 	  cin.ignore(100, '\n');
 	  turnCount--;
 	  cout<<"\nError: That is not a four digit number.\n";
 	}
 	if(userAnswer == answer){
-	  cout<<"\nCongratulations! You've cracked the code!\n\t1 - Play Again\n\t2 - Return to Menu\n\t3 - Print Results\n\n\t\t> ";
 	  winCount++;
+	  ap1.clear(); ap2.clear(); ap3.clear(); ap4.clear(); uap1.clear(); uap2.clear(); uap3.clear(); uap4.clear();
+	  cout<<"\nCongratulations! You've cracked the code!\n\t1 - Play Again\n\t2 - Return to Menu\n\n\t\t> ";
 	  cin>>decision;
+	  if(decision != 1 || decision != 2 || cin.fail()){// NO BITCH I DID NOT MEAN && THAT IS AN ENTIRELY DIFFERENT OPERATOR
+		cin.clear();
+		cin.ignore(100, '\n');
+		answer.clear();
+		userAnswer.clear();
+		system("CLS");
+		cout<<"\nError: That choice is unsupported. Returning to main menu.\n";
+	  }
 	  switch(decision){
 		case 1:{
 		  answer.clear();
@@ -73,24 +83,60 @@ void gameA(){
 		  userAnswer.clear();
 		  system("CLS");
 		  cout<<"\nWelcome to Red's Mastermind.\n";
-		  break;
-		}
-		case 3:{
-		  answer.clear();
-		  userAnswer.clear();
-		  system("CLS");
-		  cout<<"\nComing Soon!\n";
 		  break;
 		}
 	  }
 	}else{
 	  turnCount++;
+	  ap1.append(answer,0,1); ap2.append(answer,1,1); ap3.append(answer,2,1); ap4.append(answer,3,1);
+	  uap1.append(userAnswer,0,1); uap2.append(userAnswer,1,1); uap3.append(userAnswer,2,1); uap4.append(userAnswer,3,1);
+	  int repeatCheck = 0;
+	  if(ap1.compare(uap1)   == 0){hits++;}else{
+	    if(ap1.compare(uap2) == 0){blows++;  repeatCheck++;}
+	    if(ap1.compare(uap3) == 0){blows++;  repeatCheck++;}
+	    if(ap1.compare(uap4) == 0){blows++;  repeatCheck++;}
+	    if(repeatCheck > 1){blows = blows - (repeatCheck - 1);}
+	    repeatCheck = 0;
+	  }
+	  if(ap2.compare(uap2)   == 0){hits++;}else{
+	    if(ap2.compare(uap1) == 0){blows++;  repeatCheck++;}
+	    if(ap2.compare(uap3) == 0){blows++;  repeatCheck++;}
+	    if(ap2.compare(uap4) == 0){blows++;  repeatCheck++;}
+	    if(repeatCheck > 1){blows = blows - (repeatCheck - 1);}
+	    repeatCheck = 0;
+	  }
+	  if(ap3.compare(uap3)   == 0){hits++;}else{
+	    if(ap3.compare(uap1) == 0){blows++;  repeatCheck++;}
+	    if(ap3.compare(uap2) == 0){blows++;  repeatCheck++;}
+	    if(ap3.compare(uap4) == 0){blows++;  repeatCheck++;}
+	    if(repeatCheck > 1){blows = blows - (repeatCheck - 1);}
+	    repeatCheck = 0;
+	  }
+	  if(ap4.compare(uap4)   == 0){hits++;}else{
+	    if(ap4.compare(uap1) == 0){blows++;  repeatCheck++;}
+	    if(ap4.compare(uap2) == 0){blows++;  repeatCheck++;}
+	    if(ap4.compare(uap3) == 0){blows++;  repeatCheck++;}
+	    if(repeatCheck > 1){blows = blows - (repeatCheck - 1);}
+	    repeatCheck = 0;
+	  }
 	  cout<<"\nIncorrect. "<<hits<<" Hits, "<<blows<<" Blows. "<<8 - turnCount<<" guesses remaining.";
+	  hits  = 0;
+	  blows = 0;
+	  ap1.clear(); ap2.clear(); ap3.clear(); ap4.clear(); uap1.clear(); uap2.clear(); uap3.clear(); uap4.clear();
 	}
 	if(turnCount == 8 && userAnswer != answer){
-	  loseCount++;
-	  cout<<"\n\nYou were unable to guess the answer in time. Oh well!\n\t1 - Retry\n\t2 - Return to Menu\n\t3 - Print Results\n\n\t\t> ";
+	  lossCount++;
+	  ap1.clear(); ap2.clear(); ap3.clear(); ap4.clear(); uap1.clear(); uap2.clear(); uap3.clear(); uap4.clear();
+	  cout<<"\n\nYou were unable to guess the answer in time. Oh well!\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
 	  cin>>decision;
+	  if(decision != 1 || decision != 2 || cin.fail()){
+		cin.clear();
+		cin.ignore(100, '\n');
+		answer.clear();
+		userAnswer.clear();
+		system("CLS");
+		cout<<"\nError: That choice is unsupported. Returning to main menu.\n";
+	  }
 	  switch(decision){
 		case 1:{
 		  answer.clear();
@@ -104,13 +150,6 @@ void gameA(){
 		  userAnswer.clear();
 		  system("CLS");
 		  cout<<"\nWelcome to Red's Mastermind.\n";
-		  break;
-		}
-		case 3:{
-		  answer.clear();
-		  userAnswer.clear();
-		  system("CLS");
-		  cout<<"\nComing Soon!\n";
 		  break;
 		}
 	  }
@@ -149,7 +188,7 @@ int main(){
 		return 0;
 		break;
 	  }
-	  case 7:{
+	  case 7:{// TO DO make this ultra hard mode for version 1.0?????
 		if(cheatCheck == 0){
 		  cout<<"\nCheat Show Answer: Enabled.\n";
 		  cheatCheck++;
@@ -162,3 +201,4 @@ int main(){
 	}
   }while(answer.empty());
 }
+// i listened to an absurd amount of kero kero bonito while making this :,)
