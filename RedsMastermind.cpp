@@ -147,7 +147,7 @@ void gameA(){
     if(turnCount == 8 && userAnswer != answer){
       lossCount++;
       ap1.clear(); ap2.clear(); ap3.clear(); ap4.clear(); uap1.clear(); uap2.clear(); uap3.clear(); uap4.clear();
-      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
+      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\nThe answer was "<<answer<<"\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
       cin>>decision;
       if(decision != 1 || decision != 2 || cin.fail()){
         cin.clear();
@@ -280,7 +280,7 @@ void gameB(){
     if(turnCount == 8 && userAnswer != answer){
       lossCount++;
       ap1.clear(); ap2.clear(); ap3.clear(); ap4.clear(); uap1.clear(); uap2.clear(); uap3.clear(); uap4.clear();
-      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
+      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\nThe answer was "<<answer<<"\nThe answer was "<<answer<<"\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
       cin>>decision;
       if(decision != 1 || decision != 2 || cin.fail()){
         cin.clear();
@@ -425,7 +425,7 @@ void gameC(){
     if(turnCount == 8 && userAnswer != answer){
       lossCount++;
       ap1.clear(); ap2.clear(); ap3.clear(); ap4.clear(); ap5.clear(); uap1.clear(); uap2.clear(); uap3.clear(); uap4.clear(); uap5.clear();
-      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
+      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\nThe answer was "<<answer<<"\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
       cin>>decision;
       if(decision != 1 || decision != 2 || cin.fail()){
         cin.clear();
@@ -570,7 +570,7 @@ void gameD(){
     if(turnCount == 8 && userAnswer != answer){
       lossCount++;
       ap1.clear(); ap2.clear(); ap3.clear(); ap4.clear(); ap5.clear(); uap1.clear(); uap2.clear(); uap3.clear(); uap4.clear(); uap5.clear();
-      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
+      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\nThe answer was "<<answer<<"\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
       cin>>decision;
       if(decision != 1 || decision != 2 || cin.fail()){
         cin.clear();
@@ -716,7 +716,7 @@ void gameE(){
     if(turnCount == 8 && userAnswer != answer){
       lossCount++;
       ap1.clear(); ap2.clear(); ap3.clear(); ap4.clear(); ap5.clear(); uap1.clear(); uap2.clear(); uap3.clear(); uap4.clear(); uap5.clear();
-      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
+      cout<<"\n\nYou were unable to guess the answer in time. Oh well!\nThe answer was "<<answer<<"\n\t1 - Retry\n\t2 - Return to Menu\n\n\t\t> ";
       cin>>decision;
       if(decision != 1 || decision != 2 || cin.fail()){
         cin.clear();
